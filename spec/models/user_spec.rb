@@ -297,5 +297,73 @@ RSpec.describe User, type: :model do
 
       expect(merchant_1.top_buyers(3)).to eq([user_2, user_1, user_3])
     end
+    it '.past_customer_emails' do 
+      customer_100 = User.create(name: "Customer 100", address: 'gdfasdf', password: "password", email: "customer_100@customer.com", city: "Houston", state: "TX", zip: "00000", role: 0, active: true)
+      customer_200 = User.create(name: "Customer 200", address: 'gdfasdf', password: "password", email: "customer_200@customer.com", city: "Denver", state: "CO", zip: "11111", role: 0, active: true)
+      customer_300 = User.create(name: "Customer 300", address: 'gdfasdf', password: "password", email: "customer_300@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+      customer_400 = User.create(name: "Customer 400", address: 'gdfasdf', password: "password", email: "customer_400@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+      customer_500 = User.create(name: "Customer 500", address: 'gdfasdf', password: "password", email: "customer_500@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+     
+      merchant_100 = User.create(name: "Merchant 100", address: 'gdfasdf', password: "password", email: "merchant_100@merchant.com", city: "Denver", state: "CO", zip: "33333", role: 1, active: true)
+      item_100 = merchant_100.items.create(name: "Item 100", description: "This is a 100 item.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Breathe-face-smile.svg/220px-Breathe-face-smile.svg.png", price: 500.55, inventory: 100)
+      merchant_200 = User.create(name: "Merchant 200", address: 'gdfasdf', password: "password", email: "merchant_200@merchant.com", city: "Denver", state: "CO", zip: "33333", role: 1, active: true)
+      item_200 = merchant_200.items.create(name: "Item 200", description: "This is a 200 item.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Breathe-face-smile.svg/220px-Breathe-face-smile.svg.png", price: 600.66, inventory: 100)
+      order_100 = customer_100.orders.create(status: "completed")
+      order_200 = customer_200.orders.create(status: "completed")
+      order_300 = customer_300.orders.create(status: "completed")
+      order_400 = customer_400.orders.create(status: "pending")
+      order_500 = customer_500.orders.create(status: "completed")
+      order_item_100 = order_100.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      order_item_200 = order_200.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      order_item_300 = order_300.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      order_item_400 = order_400.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: false)
+      order_item_500 = order_500.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
+      # binding.pry
+
+      expect(merchant_100.past_customer_emails).to include(customer_100.email)
+      expect(merchant_100.past_customer_emails).to_not include(merchant_100.email)
+      
+      expect(merchant_100.past_customer_emails).to include(customer_300.email)
+      
+      
+      expect(merchant_100.past_customer_emails).to include(customer_400.email)
+      expect(merchant_100.past_customer_emails).to_not include(customer_500.email)
+
+    end
+    it '.not_customer_emails' do 
+      customer_100 = User.create(name: "Customer 100", address: 'gdfasdf', password: "password", email: "customer_100@customer.com", city: "Houston", state: "TX", zip: "00000", role: 0, active: true)
+      customer_200 = User.create(name: "Customer 200", address: 'gdfasdf', password: "password", email: "customer_200@customer.com", city: "Denver", state: "CO", zip: "11111", role: 0, active: true)
+      customer_300 = User.create(name: "Customer 300", address: 'gdfasdf', password: "password", email: "customer_300@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+      customer_400 = User.create(name: "Customer 400", address: 'gdfasdf', password: "password", email: "customer_400@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+      customer_500 = User.create(name: "Customer 500", address: 'gdfasdf', password: "password", email: "customer_500@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+      customer_600 = User.create(name: "Customer 600", address: 'gdfasdf', password: "password", email: "customer_600@customer.com", city: "Seattle", state: "WA", zip: "22222", role: 0, active: true)
+     
+      merchant_100 = User.create(name: "Merchant 100", address: 'gdfasdf', password: "password", email: "merchant_100@merchant.com", city: "Denver", state: "CO", zip: "33333", role: 1, active: true)
+      item_100 = merchant_100.items.create(name: "Item 100", description: "This is a 100 item.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Breathe-face-smile.svg/220px-Breathe-face-smile.svg.png", price: 500.55, inventory: 100)
+      merchant_200 = User.create(name: "Merchant 200", address: 'gdfasdf', password: "password", email: "merchant_200@merchant.com", city: "Denver", state: "CO", zip: "33333", role: 1, active: true)
+      item_200 = merchant_200.items.create(name: "Item 200", description: "This is a 200 item.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Breathe-face-smile.svg/220px-Breathe-face-smile.svg.png", price: 600.66, inventory: 100)
+      order_100 = customer_100.orders.create(status: "completed")
+      order_200 = customer_200.orders.create(status: "completed")
+      order_300 = customer_300.orders.create(status: "completed")
+      order_400 = customer_400.orders.create(status: "completed")
+      order_500 = customer_500.orders.create(status: "completed")
+      order_600 = customer_600.orders.create(status: "completed")
+      order_item_100 = order_100.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      order_item_200 = order_200.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      order_item_300 = order_300.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      order_item_400 = order_400.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
+      order_item_500 = order_500.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
+      order_item_600 = order_600.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
+      order_item_650 = order_600.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
+      
+      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_100.email)
+      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_200.email)
+      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_300.email)
+      
+      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to include(customer_400.email)
+      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to include(customer_500.email)
+      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_600.email)
+      expect(merchant_200.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_600.email)
+    end
   end
 end
