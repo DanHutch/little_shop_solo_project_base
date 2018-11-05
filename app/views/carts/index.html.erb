@@ -31,10 +31,23 @@
           </td>
       </tr>
     <% end %>
+
     <tr>
       <td colspan=4></td>
       <td>Grand Total: <%= number_to_currency(@cart.grand_total) %></td>
     </tr>
+
+    <% if @coupon %>
+      <tr>
+        <td colspan=4></td>
+        <td>Discount:  </td>
+      </tr>
+      <tr>
+        <td colspan=4></td>
+        <td>New Grand Total:  </td>
+      </tr>
+    <% end %>
+
   </tbody>
 </table>
 
