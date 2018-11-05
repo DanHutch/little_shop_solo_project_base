@@ -142,11 +142,30 @@ class User < ApplicationRecord
   end
 
   def past_customer_emails
-     User.joins(orders: {order_items: :item}).where('items.user_id = ?', self.id).joins(orders: :user).distinct.pluck('users.email')
+     User
+      .select('users.*')
+      .joins(:orders)
+      .joins('join order_items on orders.id=order_items.order_id')
+      .joins('join items on order_items.item_id=items.id')
+      .where('items.user_id = ? AND users.active = ?', id, true)
+      .group(:id)
+      .pluck('users.email')
   end
 
-  def not_customer_emails
-     User.joins(orders: {order_items: :item}).where.not('items.user_id = ?', self.id).distinct.select('users.*')
+  def not_customer_emails(past_customer_emails)
+    User
+      .select('users.*')
+      .where('users.active = ?', true)
+      .where.not('id = ?', id)
+      .where.not(email: past_customer_emails)
+      .pluck('users.email')
   end
 
+  def self.to_csv
+    attributes =  %w{email}
+
+    CSV generate(headers: true) do |csv|
+      csv << attributes.map{ |attr| user.send(attr) }
+    end
+  end  
 end

@@ -52,6 +52,9 @@ RSpec.describe 'Merchant Stats' do
 
       visit dashboard_path
 
+      expect(page).to have_content("Download Customer List")
+      expect(page).to have_content("Download Non-Customer List")
+
       within '#stats' do
         within '#inv-stats' do
           expect(page).to have_content("Total Items Sold: #{sold_units}")
