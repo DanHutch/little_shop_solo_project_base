@@ -140,4 +140,13 @@ class User < ApplicationRecord
   def self.slowest_merchants(quantity)
     merchant_by_speed(quantity, :desc)
   end
+
+  def past_customer_emails
+     User.joins(orders: {order_items: :item}).where('items.user_id = ?', self.id).joins(orders: :user).distinct.pluck('users.email')
+  end
+
+  def not_customer_emails
+     User.joins(orders: {order_items: :item}).where.not('items.user_id = ?', self.id).distinct.select('users.*')
+  end
+
 end
