@@ -5,7 +5,14 @@ class Coupon < ApplicationRecord
 	validates :min_order, :numericality => {greater_than_or_equal_to: 0}
 	validates :variety, presence: true
 
-	enum variety: %w(percent amount)
+	def self.varieties
+		%w(percent amount)
+	end
+
+	# enum variety: %w(percent amount)
+
+	enum variety: Coupon.varieties
+
 
 	# if :variety == 1
 	# 	validates :min_order, :numericality => {greater_than_or_equal_to: :coupon_value}

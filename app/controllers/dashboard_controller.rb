@@ -1,8 +1,9 @@
 class DashboardController < ApplicationController
   def show
     render file: 'errors/not_found', status: 404 unless current_user
-
     if current_user.merchant?
+      @coupon = Coupon.new
+      @coupons = Coupon.all
       @merchant = current_user
       @total_items_sold = @merchant.total_items_sold
       @total_items_pcnt = 0
@@ -28,6 +29,7 @@ class DashboardController < ApplicationController
         render :'merchants/show'
       end
     elsif current_admin?
+      @coupons = Coupon.all
       @top_3_shipping_states = Order.top_shipping(:state, 3)
       @top_3_shipping_cities = Order.top_shipping(:city, 3)
       @top_buyers = Order.top_buyers(3)
@@ -36,7 +38,7 @@ class DashboardController < ApplicationController
     else
       render file: 'errors/not_found', status: 404
     end
-    
+
   end
 end
   
