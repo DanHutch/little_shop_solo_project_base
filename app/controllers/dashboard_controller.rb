@@ -36,6 +36,7 @@ class DashboardController < ApplicationController
     else
       render file: 'errors/not_found', status: 404
     end
+    
   end
 end
   

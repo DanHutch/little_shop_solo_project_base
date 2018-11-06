@@ -38,7 +38,7 @@ RSpec.describe 'Merchant Stats' do
       @order_A = create(:completed_order, user: @user_4)
       create(:fulfilled_order_item, order: @order_A, item: @item_1)
     end
-    it 'shows total items I have sold and as a percentage of inventory' do
+    it 'shows total items I have sold and as a percentage of inventory and links to download CSV files' do
       merchant_1, merchant_2 = create_list(:merchant, 2)
       total_units = 100
       sold_units = 20
@@ -51,7 +51,6 @@ RSpec.describe 'Merchant Stats' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_1)
 
       visit dashboard_path
-
       expect(page).to have_content("Download Customer List")
       expect(page).to have_content("Download Non-Customer List")
       
