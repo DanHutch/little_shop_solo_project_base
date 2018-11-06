@@ -326,7 +326,7 @@ RSpec.describe User, type: :model do
       expect(merchant_100.past_customer_emails).to include(customer_300.email)
       
       
-      expect(merchant_100.past_customer_emails).to include(customer_400.email)
+      expect(merchant_100.past_customer_emails).to_not include(customer_400.email)
       expect(merchant_100.past_customer_emails).to_not include(customer_500.email)
 
     end
