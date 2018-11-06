@@ -16,7 +16,7 @@
   <div> Active Coupons: </div>
   <% @coupons.each do |coupon| %>
     <div><%= coupon.code %>:</div>
-    <div>Value: <%= coupon.code coupon.variety %></div>
+    <div>Value: <%= coupon.coupon_value%> <%= coupon.variety %></div>
     <div>Minimum Order Amount: $<%= coupon.min_order %>
   <% end %>
 <% end %>

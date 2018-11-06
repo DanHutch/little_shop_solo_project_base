@@ -19,7 +19,7 @@ RSpec.describe Coupon, type: :model do
 		expect(coupon.code).to eq(code)
 		expect(coupon.coupon_value).to eq(10)
 		expect(coupon.min_order).to eq(20)
-		expect(coupon.variety).to eq("amount")
+		expect(coupon.variety).to eq("dollars")
 		expect(Coupon.all.size).to eq(1)
 
 	end
@@ -31,7 +31,7 @@ RSpec.describe Coupon, type: :model do
 		expect(coupon.code).to eq(code)
 		expect(coupon.coupon_value).to eq(10)
 		expect(coupon.min_order).to eq(0)
-		expect(coupon.variety).to eq("amount")
+		expect(coupon.variety).to eq("dollars")
 		expect(Coupon.all.size).to eq(1)
 	end
 	it "should not create a coupon if the min order amount is less than zero" do

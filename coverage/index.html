@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-06T16:19:33-07:00">2018-11-06T16:19:33-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-06T16:44:48-07:00">2018-11-06T16:44:48-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -193,7 +193,7 @@
       <tr>
         <td class="strong"><a href="#0b09fe8e37d5d4eed4047ac485c5c811975473c1" class="src_link" title="app/models/coupon.rb">app/models/coupon.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>20</td>
+        <td>18</td>
         <td>9</td>
         <td>9</td>
         <td>0</td>
@@ -3779,7 +3779,7 @@
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">		%w(percent amount)</code>
+          <code class="ruby">		%w(percent dollars)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
@@ -3794,10 +3794,10 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="12">
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">	# enum variety: %w(percent amount)</code>
+          <code class="ruby">	enum variety: Coupon.varieties</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
@@ -3806,43 +3806,31 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="14">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="14">
           
-          <code class="ruby">	enum variety: Coupon.varieties</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">	# if :variety == 1</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">	# 	validates :min_order, :numericality =&gt; {greater_than_or_equal_to: :coupon_value}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">	# if :variety == 1</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="18">
-          
-          
-          <code class="ruby">	# 	validates :min_order, :numericality =&gt; {greater_than_or_equal_to: :coupon_value}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="19">
-          
-          
           <code class="ruby">	# end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="never" data-hits="" data-linenumber="18">
           
           
           <code class="ruby">end</code>
@@ -15899,7 +15887,7 @@
         <li class="covered" data-hits="1" data-linenumber="22">
           <span class="hits">1</span>
           
-          <code class="ruby">		expect(coupon.variety).to eq(&quot;amount&quot;)</code>
+          <code class="ruby">		expect(coupon.variety).to eq(&quot;dollars&quot;)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="23">
@@ -15971,7 +15959,7 @@
         <li class="covered" data-hits="1" data-linenumber="34">
           <span class="hits">1</span>
           
-          <code class="ruby">		expect(coupon.variety).to eq(&quot;amount&quot;)</code>
+          <code class="ruby">		expect(coupon.variety).to eq(&quot;dollars&quot;)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="35">

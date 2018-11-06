@@ -6,10 +6,8 @@ class Coupon < ApplicationRecord
 	validates :variety, presence: true
 
 	def self.varieties
-		%w(percent amount)
+		%w(percent dollars)
 	end
-
-	# enum variety: %w(percent amount)
 
 	enum variety: Coupon.varieties
 
