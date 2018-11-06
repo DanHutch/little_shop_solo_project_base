@@ -356,14 +356,14 @@ RSpec.describe User, type: :model do
       order_item_600 = order_600.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
       order_item_650 = order_600.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
       
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_100.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_200.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_300.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_100.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_200.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_300.email)
       
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to include(customer_400.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to include(customer_500.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_600.email)
-      expect(merchant_200.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_600.email)
+      expect(merchant_100.not_customer_emails).to include(customer_400.email)
+      expect(merchant_100.not_customer_emails).to include(customer_500.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_600.email)
+      expect(merchant_200.not_customer_emails).to_not include(customer_600.email)
     end
   end
 end

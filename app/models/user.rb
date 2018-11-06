@@ -154,12 +154,13 @@ class User < ApplicationRecord
       .pluck('users.email')
   end
 
-  def not_customer_emails(past_customer_emails)
+  def not_customer_emails
+    customers = self.past_customer_emails
     User
       .select('users.*')
       .where('users.active = ?', true)
       .where.not('id = ?', id)
-      .where.not(email: past_customer_emails)
+      .where.not(email: customers)
       .pluck('users.email')
   end
 

@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
       @biggest_order = @merchant.biggest_order
       @top_buyers = @merchant.top_buyers(3)
       customer_emails = @merchant.past_customer_emails
-      uncustomer_emails = @merchant.not_customer_emails(@merchant.past_customer_emails)
+      uncustomer_emails = @merchant.not_customer_emails
       if params[:type] == "customer"
         respond_to do |format|
           format.csv { send_data customer_emails.to_csv, filename: "past-customer-emails-#{Date.today}.csv"}
