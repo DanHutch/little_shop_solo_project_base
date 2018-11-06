@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
       order_1 = create(:order, user: user)
       create(:order_item, order: order_1, item: item_1)
       create(:order_item, order: order_1, item: item_2)
-  
+  sleep(2)
       order_2 = create(:completed_order, user: user)
       create(:fulfilled_order_item, order: order_2, item: item_2)
       create(:fulfilled_order_item, order: order_2, item: item_3)
