@@ -318,7 +318,6 @@ RSpec.describe User, type: :model do
       order_item_300 = order_300.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
       order_item_400 = order_400.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: false)
       order_item_500 = order_500.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
-      # binding.pry
 
       expect(merchant_100.past_customer_emails).to include(customer_100.email)
       expect(merchant_100.past_customer_emails).to_not include(merchant_100.email)

@@ -13,7 +13,6 @@ class OrderItem < ApplicationRecord
 
   def subtotal
     s = quantity * price
-    # binding.pry
     s
   end
 end

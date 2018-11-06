@@ -21,6 +21,7 @@ RSpec.describe Coupon, type: :model do
 		expect(coupon.min_order).to eq(20)
 		expect(coupon.variety).to eq("amount")
 		expect(Coupon.all.size).to eq(1)
+
 	end
 	it "should successfully create a coupon even without giving it a minimum order amount" do
 		expect(Coupon.all.size).to eq(0)
