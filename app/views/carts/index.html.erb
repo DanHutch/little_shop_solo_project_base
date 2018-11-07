@@ -37,6 +37,8 @@
       <td>Grand Total: <%= number_to_currency(@cart.grand_total) %></td>
     </tr>
 
+    <%= render partial: 'coupon' %>
+
     <% if @coupon %>
       <tr>
         <td colspan=4></td>

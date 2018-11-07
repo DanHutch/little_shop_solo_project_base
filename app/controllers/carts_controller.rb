@@ -3,6 +3,7 @@ class CartsController < ApplicationController
 
   def index
     @items = Item.where(id: @cart.contents.keys)
+    
   end
 
   def update

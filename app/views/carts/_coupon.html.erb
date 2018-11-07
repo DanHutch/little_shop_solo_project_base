@@ -1,0 +1,7 @@
+<u>Coupon:</u>
+
+<%= form_tag cart_path, method: :put do %>
+  <p><%= label_tag :coupon_code %>
+  <%= text_field_tag :coupon_code %></p>
+	<%= submit_tag 'Apply' %>
+<% end %>
