@@ -33,6 +33,10 @@ class OrdersController < ApplicationController
         fulfilled: false)
     end
     session[:cart] = nil
+    if session[:discount] != nil
+      coupon = Coupon.find_by(code: session[:discount]["code"])
+      coupon.destroy
+    end
     @cart = Cart.new({})
     redirect_to profile_orders_path
   end

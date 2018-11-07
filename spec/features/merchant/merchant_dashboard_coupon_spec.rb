@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "when a merchant wants to create a coupon code in their dashboard" do
-	it "should have input fields to create a coupon" do 
+	it "should allow a merchant to create a coupon" do 
 		merchant = User.create(email: "admin@admin.com", name: "admin", address: "123 street", city: "denver", state: "CO", zip: "00000", role: 1)
 
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
@@ -19,6 +19,35 @@ RSpec.describe "when a merchant wants to create a coupon code in their dashboard
 
 		expect(current_path).to eq(dashboard_path)
 		expect(page).to have_content("Active Coupons")
+	end
+	it "should not create a coupon with invalid inputs" do 
+		merchant = User.create(email: "admin@admin.com", name: "admin", address: "123 street", city: "denver", state: "CO", zip: "00000", role: 1)
+
+		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant)
+
+		visit dashboard_path
+
+		expect(page).to have_field("Coupon value")
+		expect(page).to have_field("Min order")
+		expect(page).to have_field("Variety")
+		expect(page).to_not have_content("Active Coupons")
+
+		fill_in "Coupon value", with: "10"
+		fill_in "Min order", with: "5"
+		select("dollars", from: 'Variety')
+		click_on "Create Coupon"
+
+		expect(page).to have_content("**Coupon was not created successfully. Note: If Variety is 'dollars', Minimum Order must be greater than Coupon Value.**")
+		expect(page).to_not have_content("Active Coupons")
+
+	
+		fill_in "Min order", with: "5"
+		select("dollars", from: 'Variety')
+		click_on "Create Coupon"
+
+		expect(page).to have_content("Coupon was not created successfully. Please double-check input fields.")
+		expect(page).to_not have_content("Active Coupons")
+
 	end
 	it "should apply coupons to the cart" do
 			merchant = User.create(email: "admin@admin.com", name: "admin", address: "123 street", city: "denver", state: "CO", zip: "00000", role: 1)
@@ -38,7 +67,9 @@ RSpec.describe "when a merchant wants to create a coupon code in their dashboard
 
 		fill_in "Coupon value", with: "10"
 		fill_in "Min order", with: "15"
+		
 		click_on "Create Coupon"
+
 
 		coupon = Coupon.create(code: "12345", coupon_value: 15, min_order: 20, variety: 1)
 
@@ -58,10 +89,6 @@ RSpec.describe "when a merchant wants to create a coupon code in their dashboard
 		expect(page).to have_field("Coupon code")
 		fill_in "Coupon code", with: "#{coupon.code}"
 		click_on "Apply"
-	
 
-
-
-		
 	end
 end
