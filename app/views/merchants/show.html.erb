@@ -13,12 +13,16 @@
 
 
 <% unless @coupons.empty? %>
-  <div> Active Coupons: </div>
+  <div><h3>Active Coupons:</h3></div>
+  <ul>
   <% @coupons.each do |coupon| %>
-    <div><%= coupon.code %>:</div>
-    <div>Value: <%= coupon.coupon_value%> <%= coupon.variety %></div>
-    <div>Minimum Order Amount: $<%= coupon.min_order %>
+    <li>
+      <div><u>Coupon Code:</u> <%= coupon.code %>:</div>
+      <div><u>Value:</u> <%= coupon.coupon_value%> <%= coupon.variety %></div>
+      <div><u>Minimum Order Amount:</u> $<%= coupon.min_order %>
+    </li>
   <% end %>
+  </ul>
 <% end %>
 
 

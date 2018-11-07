@@ -15,7 +15,7 @@ class CouponsController < ApplicationController
 			end
 
 		else
-			flash[:notice] = "**Coupon was not created successfully. Note: If Variety is 'dollars', Coupon Value must be greater than minimum order.**"
+			flash[:notice] = "**Coupon was not created successfully. Note: If Variety is 'dollars', Coupon Value must be greater than Minimum Order.**"
 			redirect_to dashboard_path
 		end
 	end

@@ -14,14 +14,14 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-06T16:44:48-07:00">2018-11-06T16:44:48-07:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-11-06T17:24:09-07:00">2018-11-06T17:24:09-07:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">100.0%</span></span>
+    (<span class="covered_percent"><span class="green">99.8%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -31,10 +31,10 @@
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>43</b> files in total.
-    <b>2008</b> relevant lines. 
-    <span class="green"><b>2008</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed </span>
+    <b>44</b> files in total.
+    <b>2030</b> relevant lines. 
+    <span class="green"><b>2026</b> lines covered</span> and
+    <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -57,7 +57,7 @@
         <td>10</td>
         <td>10</td>
         <td>0</td>
-        <td>152.2</td>
+        <td>152.8</td>
       </tr>
       
       <tr>
@@ -68,6 +68,16 @@
         <td>23</td>
         <td>0</td>
         <td>7.1</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#8d7d411273a2fd9a22a201463b5d19e11cc9b231" class="src_link" title="app/controllers/coupons_controller.rb">app/controllers/coupons_controller.rb</a></td>
+        <td class="red strong">75.0 %</td>
+        <td>31</td>
+        <td>16</td>
+        <td>12</td>
+        <td>4</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -97,7 +107,7 @@
         <td>33</td>
         <td>33</td>
         <td>0</td>
-        <td>11.1</td>
+        <td>11.7</td>
       </tr>
       
       <tr>
@@ -187,7 +197,7 @@
         <td>26</td>
         <td>26</td>
         <td>0</td>
-        <td>28.3</td>
+        <td>28.5</td>
       </tr>
       
       <tr>
@@ -303,9 +313,9 @@
       <tr>
         <td class="strong"><a href="#0b398fb9b99f153551f09cb953c7f4ba0801f231" class="src_link" title="spec/features/merchant/merchant_dashboard_coupon_spec.rb">spec/features/merchant/merchant_dashboard_coupon_spec.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>18</td>
-        <td>9</td>
-        <td>9</td>
+        <td>26</td>
+        <td>15</td>
+        <td>15</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -576,8 +586,8 @@
           <code class="ruby">  def current_admin?</code>
         </li>
       
-        <li class="covered" data-hits="590" data-linenumber="12">
-          <span class="hits">590</span>
+        <li class="covered" data-hits="594" data-linenumber="12">
+          <span class="hits">594</span>
           
           <code class="ruby">    current_user &amp;&amp; current_user.admin?</code>
         </li>
@@ -600,8 +610,8 @@
           <code class="ruby">  def build_cart</code>
         </li>
       
-        <li class="covered" data-hits="286" data-linenumber="16">
-          <span class="hits">286</span>
+        <li class="covered" data-hits="288" data-linenumber="16">
+          <span class="hits">288</span>
           
           <code class="ruby">    @cart ||= Cart.new(session[:cart])</code>
         </li>
@@ -840,6 +850,211 @@
 </div>
 
       
+        <div class="source_table" id="8d7d411273a2fd9a22a201463b5d19e11cc9b231">
+  <div class="header">
+    <h3>app/controllers/coupons_controller.rb</h3>
+    <h4><span class="red">75.0 %</span> covered</h4>
+    <div>
+      <b>16</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class CouponsController &lt; ApplicationController</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	require &#39;securerandom&#39;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	def create</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		if (coupon_params[:variety] == &quot;1&quot; &amp;&amp; coupon_params[:min_order] &gt;= coupon_params[:coupon_value]) || coupon_params[:variety] == &quot;0&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">			code = SecureRandom.uuid</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">			@coupon = Coupon.create(code: code, coupon_value: coupon_params[:coupon_value], min_order: coupon_params[:min_order], variety: coupon_params[:variety].to_i)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">			if @coupon.save</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">				flash[:success] = &quot;Coupon Successfully Created!&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="11">
+          <span class="hits">1</span>
+          
+          <code class="ruby">				redirect_to dashboard_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="12">
+          
+          
+          <code class="ruby">			else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">				flash[:notice] = &quot;Coupon was not created successfully. Please double-check input fields.&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">				redirect_to dashboard_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">			end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">		else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">			flash[:notice] = &quot;**Coupon was not created successfully. Note: If Variety is &#39;dollars&#39;, Coupon Value must be greater than Minimum Order.**&quot;</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
+          
+          <code class="ruby">			redirect_to dashboard_path</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">		end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby">	end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	private</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">	def coupon_params</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="27">
+          <span class="hits">5</span>
+          
+          <code class="ruby">		params.require(:coupon).permit(:coupon_value, :min_order, :variety)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby">	end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="29">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="30">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="31">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
         <div class="source_table" id="6f07414356e39b3c9207979ccaaa0018247c75c7">
   <div class="header">
     <h3>app/controllers/dashboard/items_controller.rb</h3>
@@ -982,50 +1197,50 @@
           <code class="ruby">  def show</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="3">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="3">
+          <span class="hits">25</span>
           
           <code class="ruby">    render file: &#39;errors/not_found&#39;, status: 404 unless current_user</code>
         </li>
       
-        <li class="covered" data-hits="24" data-linenumber="4">
-          <span class="hits">24</span>
+        <li class="covered" data-hits="25" data-linenumber="4">
+          <span class="hits">25</span>
           
           <code class="ruby">    if current_user.merchant?</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="5">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="5">
+          <span class="hits">17</span>
           
           <code class="ruby">      @coupon = Coupon.new</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="6">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="6">
+          <span class="hits">17</span>
           
           <code class="ruby">      @coupons = Coupon.all</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="7">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="7">
+          <span class="hits">17</span>
           
           <code class="ruby">      @merchant = current_user</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="8">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="8">
+          <span class="hits">17</span>
           
           <code class="ruby">      @total_items_sold = @merchant.total_items_sold</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="9">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="9">
+          <span class="hits">17</span>
           
           <code class="ruby">      @total_items_pcnt = 0</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="10">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="10">
+          <span class="hits">17</span>
           
           <code class="ruby">      if @total_items_sold &amp;&amp; @merchant.total_inventory &gt; 0</code>
         </li>
@@ -1042,50 +1257,50 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="13">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="13">
+          <span class="hits">17</span>
           
           <code class="ruby">      @top_3_shipping_states = @merchant.top_3_shipping_states</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="14">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="14">
+          <span class="hits">17</span>
           
           <code class="ruby">      @top_3_shipping_cities = @merchant.top_3_shipping_cities</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="15">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="15">
+          <span class="hits">17</span>
           
           <code class="ruby">      @most_active_buyer = @merchant.top_active_user</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="16">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="16">
+          <span class="hits">17</span>
           
           <code class="ruby">      @biggest_order = @merchant.biggest_order</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="17">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="17">
+          <span class="hits">17</span>
           
           <code class="ruby">      @top_buyers = @merchant.top_buyers(3)</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="18">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="18">
+          <span class="hits">17</span>
           
           <code class="ruby">      customer_emails = @merchant.past_customer_emails</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="19">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="19">
+          <span class="hits">17</span>
           
           <code class="ruby">      uncustomer_emails = @merchant.not_customer_emails</code>
         </li>
       
-        <li class="covered" data-hits="16" data-linenumber="20">
-          <span class="hits">16</span>
+        <li class="covered" data-hits="17" data-linenumber="20">
+          <span class="hits">17</span>
           
           <code class="ruby">      if params[:type] == &quot;customer&quot;</code>
         </li>
@@ -1108,8 +1323,8 @@
           <code class="ruby">        end</code>
         </li>
       
-        <li class="covered" data-hits="15" data-linenumber="24">
-          <span class="hits">15</span>
+        <li class="covered" data-hits="16" data-linenumber="24">
+          <span class="hits">16</span>
           
           <code class="ruby">      elsif params[:type] == &quot;non-customer&quot;</code>
         </li>
@@ -1138,8 +1353,8 @@
           <code class="ruby">      else</code>
         </li>
       
-        <li class="covered" data-hits="14" data-linenumber="29">
-          <span class="hits">14</span>
+        <li class="covered" data-hits="15" data-linenumber="29">
+          <span class="hits">15</span>
           
           <code class="ruby">        render :&#39;merchants/show&#39;</code>
         </li>
@@ -3463,8 +3678,8 @@
           <code class="ruby">  def initialize(initial_contents)</code>
         </li>
       
-        <li class="covered" data-hits="296" data-linenumber="5">
-          <span class="hits">296</span>
+        <li class="covered" data-hits="298" data-linenumber="5">
+          <span class="hits">298</span>
           
           <code class="ruby">    @contents = initial_contents || Hash.new(0)</code>
         </li>
@@ -3487,8 +3702,8 @@
           <code class="ruby">  def total_count</code>
         </li>
       
-        <li class="covered" data-hits="223" data-linenumber="9">
-          <span class="hits">223</span>
+        <li class="covered" data-hits="224" data-linenumber="9">
+          <span class="hits">224</span>
           
           <code class="ruby">    @contents.values.sum</code>
         </li>
@@ -7804,8 +8019,8 @@
     <h3>spec/features/merchant/merchant_dashboard_coupon_spec.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>9</b> relevant lines. 
-      <span class="green"><b>9</b> lines covered</span> and
+      <b>15</b> relevant lines. 
+      <span class="green"><b>15</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -7891,10 +8106,10 @@
           <code class="ruby">		expect(page).to have_field(&quot;Variety&quot;)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="14">
+        <li class="covered" data-hits="1" data-linenumber="14">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">		</code>
+          <code class="ruby">		expect(page).to_not have_content(&quot;Active Coupons&quot;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
@@ -7903,19 +8118,67 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="16">
+        <li class="covered" data-hits="1" data-linenumber="16">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		fill_in &quot;Coupon value&quot;, with: &quot;10&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		fill_in &quot;Min order&quot;, with: &quot;15&quot;</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="18">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		click_on &quot;Create Coupon&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="19">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="20">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		expect(current_path).to eq(dashboard_path)</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="21">
+          <span class="hits">1</span>
+          
+          <code class="ruby">		expect(page).to have_content(&quot;Active Coupons&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby">		</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="17">
+        <li class="never" data-hits="" data-linenumber="25">
           
           
           <code class="ruby">	end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="18">
+        <li class="never" data-hits="" data-linenumber="26">
           
           
           <code class="ruby">end</code>

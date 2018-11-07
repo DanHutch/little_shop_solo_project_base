@@ -11,8 +11,13 @@ RSpec.describe "when a merchant wants to create a coupon code in their dashboard
 		expect(page).to have_field("Coupon value")
 		expect(page).to have_field("Min order")
 		expect(page).to have_field("Variety")
-		
+		expect(page).to_not have_content("Active Coupons")
 
-		
+		fill_in "Coupon value", with: "10"
+		fill_in "Min order", with: "15"
+		click_on "Create Coupon"
+
+		expect(current_path).to eq(dashboard_path)
+		expect(page).to have_content("Active Coupons")
 	end
 end
