@@ -9,7 +9,7 @@ class MerchantsController < ApplicationController
 
   def show
     render file: 'errors/not_found', status: 404 unless current_user
-
+    @coupons = Coupon.all
     @merchant = User.find(params[:id])
     if current_admin?
       @orders = current_user.merchant_orders

@@ -147,17 +147,20 @@ class User < ApplicationRecord
       .joins(:orders)
       .joins('join order_items on orders.id=order_items.order_id')
       .joins('join items on order_items.item_id=items.id')
+      .where('orders.status != ?', :cancelled)
+      .where('order_items.fulfilled = ?', true)
       .where('items.user_id = ? AND users.active = ?', id, true)
-      .group(:id)
+      .distinct
       .pluck('users.email')
   end
 
-  def not_customer_emails(past_customer_emails)
+  def not_customer_emails
+    customers = self.past_customer_emails
     User
       .select('users.*')
       .where('users.active = ?', true)
       .where.not('id = ?', id)
-      .where.not(email: past_customer_emails)
+      .where.not(email: customers)
       .pluck('users.email')
   end
 

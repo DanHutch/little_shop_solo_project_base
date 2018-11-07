@@ -1,10 +1,30 @@
 <h1>Merchant Dashboard</h1>
-
-<p><%= link_to "Download Customer List", dashboard_path(format: :csv, type:"customer") %></p>
-<p><%= link_to "Download Non-Customer List", dashboard_path(format: :csv, type:"non-customer") %></p>
+<%if current_user.merchant?%>
+  <p><%= link_to "Download Customer List", dashboard_path(format: :csv, type:"customer") %></p>
+  <p><%= link_to "Download Non-Customer List", dashboard_path(format: :csv, type:"non-customer") %></p>
+<% end %>
 
 <p><%= link_to "Edit Profile Data", current_admin? ? edit_user_path(@merchant.id) : profile_edit_path %></p>
 <p><%= link_to 'My Items for Sale', current_admin? ? merchant_items_path(@merchant) : dashboard_items_path %>
+
+<% if current_user.merchant? %>
+  <%= render partial: '/merchants/coupon' %>
+<% end %>
+
+
+<% unless @coupons.empty? %>
+  <div><h3>Active Coupons:</h3></div>
+  <ul>
+  <% @coupons.each do |coupon| %>
+    <li>
+      <div><u>Coupon Code:</u> <%= coupon.code %></div>
+      <div><u>Value:</u> <%= coupon.coupon_value%> <%= coupon.variety %></div>
+      <div><u>Minimum Order Amount:</u> $<%= coupon.min_order %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
 
 <div id="stats">
   <div id="inv-stats">

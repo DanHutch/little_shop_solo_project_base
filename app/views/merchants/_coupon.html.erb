@@ -1,0 +1,11 @@
+<%= form_for @coupon do |f| %>
+	<%= f.label :coupon_value %>
+	<%= f.number_field :coupon_value  %>
+	<%= f.label :min_order %>
+	<%= f.number_field :min_order  %>
+	<%= f.label :variety %>
+	<%= f.select(:variety, options_for_select(Coupon.varieties))  %>
+
+	<%= f.submit  %>	
+<% end %>
+	

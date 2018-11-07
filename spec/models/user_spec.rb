@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
       order_1 = create(:order, user: user)
       create(:order_item, order: order_1, item: item_1)
       create(:order_item, order: order_1, item: item_2)
-  
+  sleep(2)
       order_2 = create(:completed_order, user: user)
       create(:fulfilled_order_item, order: order_2, item: item_2)
       create(:fulfilled_order_item, order: order_2, item: item_3)
@@ -318,7 +318,6 @@ RSpec.describe User, type: :model do
       order_item_300 = order_300.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
       order_item_400 = order_400.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: false)
       order_item_500 = order_500.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
-      # binding.pry
 
       expect(merchant_100.past_customer_emails).to include(customer_100.email)
       expect(merchant_100.past_customer_emails).to_not include(merchant_100.email)
@@ -326,7 +325,7 @@ RSpec.describe User, type: :model do
       expect(merchant_100.past_customer_emails).to include(customer_300.email)
       
       
-      expect(merchant_100.past_customer_emails).to include(customer_400.email)
+      expect(merchant_100.past_customer_emails).to_not include(customer_400.email)
       expect(merchant_100.past_customer_emails).to_not include(customer_500.email)
 
     end
@@ -356,14 +355,14 @@ RSpec.describe User, type: :model do
       order_item_600 = order_600.order_items.create(item_id: item_200.id, price: item_200.price, quantity: 1, fulfilled: true)
       order_item_650 = order_600.order_items.create(item_id: item_100.id, price: item_100.price, quantity: 1, fulfilled: true)
       
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_100.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_200.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_300.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_100.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_200.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_300.email)
       
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to include(customer_400.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to include(customer_500.email)
-      expect(merchant_100.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_600.email)
-      expect(merchant_200.not_customer_emails(merchant_100.past_customer_emails)).to_not include(customer_600.email)
+      expect(merchant_100.not_customer_emails).to include(customer_400.email)
+      expect(merchant_100.not_customer_emails).to include(customer_500.email)
+      expect(merchant_100.not_customer_emails).to_not include(customer_600.email)
+      expect(merchant_200.not_customer_emails).to_not include(customer_600.email)
     end
   end
 end

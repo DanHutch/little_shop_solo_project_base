@@ -44,9 +44,15 @@ Rails.application.routes.draw do
   delete '/cart', to: 'carts#empty'
   delete '/cart/:item_id', to: 'carts#remove'
   patch '/cart/:item_id', to: 'carts#update', as: 'cart_item_quantity'
+  get '/coupon', to: "carts#update", as: 'apply_discount'
+
+  resources :coupons, only: [:index]
+  
 
   # custom error pages
   get "/404", to: "errors#not_found"
   get "/422", to: "errors#unacceptable"
   get "/500", to: "errors#internal_error"
+
+  resources :coupons, only: [:create]
 end

@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def build_cart
-    @cart ||= Cart.new(session[:cart])
+    @cart ||= Cart.new(session[:cart], session[:discount])
   end
 end
